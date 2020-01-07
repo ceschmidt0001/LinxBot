@@ -97,24 +97,9 @@ client.on("message", async message => {
     .setTimestamp()
     .setFooter(`Requested by ${member.username}`, member.displayAvatarURL)
     message.channel.send({embed});
-    /*try {
-     await type(message.channel,true,3);
-     var RandomNoHash = (Math.random() * 0xFFFFFF << 0).toString(16);
-     await sendRandomEmbed(message.channel,"command list:",`\n For everyone: \n ${p}help \n ${p}userinfo [@user] \n ${p}avatar [@user] \n ${p}randomhex \n ${p}uptime \n ${p}weather [City] \n ${p}badjoke \n ${p}badmeme \n ${p}meme
-     \n NSFW: \n ${p}ass \n ${p}thigh \n ${p}neko \n ${p}yiff \n ❗ e621 might give unwanted result, \n You have been warned. \n \n Owner Only: \n ${p}die [Hard Reset] \n ${p}eval [code]  \n ${p}cmd [windows command]`);
-     await type(message.channel,false,0);
-         return;
-       } catch (e) {
-         return;
-       }*/
      }
      
      if (command === 'stats') {
-     /* let ownerID = `${config.owner}`
-      if (message.author.id !== ownerID) {
-        message.channel.send("❗ This is a **BOT OWNER** Command");
-        return;
-      }*/
       let member = message.author
       var RandomNoHash = (Math.random() * 0xFFFFFF << 0).toString(16);
       var channels = client.channels.filter(c => c.type === 'text').size
@@ -193,9 +178,6 @@ client.on("message", async message => {
             .setFooter(`bot account: ${emo}`)
             .setDescription(`• Nickname: ${member.nickname} \n • ID: ${ID} \n • Join Date: ${JoinedAt} \n • Created at: ${User.createdAt} \n • Highest role: ${HighestRole} \n • Status: ${User.presence.status} \n • Game: ${User.presence.game ? User.presence.game.name : 'None'}`);  
         return await message.channel.send(embed);
-    //await type(message.channel,true,3); 
-    //await sendRandomEmbed(message.channel,"User's Info:",`name: ${User} \n id: ${ID} \n Join Date: ${JoinedAt} \n Highest role: ${HighestRole}`);
-    //return await type(message.channel,false,0);
   }
 
   if (command === "avatar") {
@@ -311,7 +293,6 @@ if (command === "meme") {
     .setImage(meme)
     .setTimestamp()
     .setFooter(`KaiBeta`, client.user.displayAvatarURL)
-    //.setColor(colors.red)
     
     message.channel.send(embed);
   }
@@ -319,15 +300,6 @@ if (command === "meme") {
   if (command === "badmeme") {
     let msg = await message.channel.send("Generating...")
       memes.generate(client,msg)
-        /*let mEmbed = new Discord.RichEmbed()
-        .setColor(colors.red)
-        .setAuthor(`KaiBeta MEMES!`, message.guild.iconURL)
-        .setImage(memes.generate(client,msg))
-        .setTimestamp()
-        .setFooter(`KaiBeta`, client.user.displayAvatarURL)
-
-        message.channel.send({embed: mEmbed})*/
-
         msg.delete();
 }
 
