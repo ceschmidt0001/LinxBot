@@ -13,7 +13,7 @@ let yiff = require('yiff');
 const die = require("discord.js/src/util/Constants.js");
 die.DefaultOptions.ws.properties.$browser = `Discord Android`;
 
-const hook = new Discord.WebhookClient('662753474374664242', 'kL_q1fTqer3UEcvplvpdX5mIQvgApySMwu05eR4158ya820ZGGeHfUtfSv2qwz9Q9g_G');
+//const hook = new Discord.WebhookClient('ID', 'TOKEN');
 
 //get cucked discord
 
