@@ -111,7 +111,7 @@ client.on("message", async message => {
       .addField("Guild Count", `${client.guilds.size}`,true)
       .addField("User Count",`${client.users.size}`,true)
       .addField("Channels",`Text: ${channels} \n Voice: ${vchannels}`,true)
-      
+      .addField("Uptime",`${days} days, ${hours} hours, ${minutes} minutes and ${seconds} seconds`,true)
       .setTimestamp()
       .setFooter(`Requested by ${member.username}`, member.displayAvatarURL)
       message.channel.send({embed});
@@ -444,20 +444,6 @@ if (command === "meme") {
     return;
   }
   }
-
-  if(command === "uptime") {
-
- type(message.channel,true,3);
- async function duration(ms) {
-  const sec = Math.floor((ms / 1000) % 60).toString();
-  const min = Math.floor((ms / (1000 * 60)) % 60).toString();
-  const hrs = Math.floor((ms / (1000 * 60 * 60)) % 60).toString();
-  const days = Math.floor((ms / (1000 * 60 * 60 * 24)) % 60).toString();
-  return await `${days.padStart(1, '0')} days, ${hrs.padStart(2, '0')} hours, ${min.padStart(2, '0')} minutes, ${sec.padStart(2, '0')} seconds, `;
-}
- 
-message.channel.send(`I have been online for: ${duration(client.uptime)}`)
-}
 
 
 });
