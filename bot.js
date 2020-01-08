@@ -51,7 +51,8 @@ function clean(text) {
 
 
 client.on("ready", () => {
-  //client.user.setStatus('dnd')
+//uncomment to use online,idle,dnd or offline in the config file  
+//client.user.setStatus('${config.presence}')
   client.user.setActivity(`${config.status}`, { type: `${config.mode}` /*,{url: "https://www.twitch.tv/minecraft"*/});
   console.log("loaded".green)
 });
