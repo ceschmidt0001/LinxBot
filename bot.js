@@ -101,6 +101,12 @@ client.on("message", async message => {
      }
      
      if (command === 'stats') {
+      let totalSeconds = (client.uptime / 1000);
+      let days = Math.floor(totalSeconds / 86400);
+      let hours = Math.floor(totalSeconds / 3600);
+      totalSeconds %= 3600;
+      let minutes = Math.floor(totalSeconds / 60);
+      let seconds = Math.round(totalSeconds % 60);
       let member = message.author
       var RandomNoHash = (Math.random() * 0xFFFFFF << 0).toString(16);
       var channels = client.channels.filter(c => c.type === 'text').size
@@ -115,7 +121,6 @@ client.on("message", async message => {
       .setTimestamp()
       .setFooter(`Requested by ${member.username}`, member.displayAvatarURL)
       message.channel.send({embed});
-      //return message.channel.send(`Guild count: ${client.guilds.size} \n User count: ${client.users.size}`);
       
     }
      // Weather Command
