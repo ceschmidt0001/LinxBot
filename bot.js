@@ -1,4 +1,12 @@
-//https://discordapp.com/oauth2/authorize?client_id=595240806953123840&scope=bot&permissions=9999999999
+/*__/\\\________________________________________________/\\\\\\\\\\\\\_______________________________        
+   _\/\\\_______________________________________________\/\\\/////////\\\_____________________________       
+    _\/\\\______________/\\\_____________________________\/\\\_______\/\\\___________________/\\\______      
+     _\/\\\_____________\///___/\\/\\\\\\____/\\\____/\\\_\/\\\\\\\\\\\\\\______/\\\\\_____/\\\\\\\\\\\_     
+      _\/\\\______________/\\\_\/\\\////\\\__\///\\\/\\\/__\/\\\/////////\\\___/\\\///\\\__\////\\\////__    
+       _\/\\\_____________\/\\\_\/\\\__\//\\\___\///\\\/____\/\\\_______\/\\\__/\\\__\//\\\____\/\\\______   
+        _\/\\\_____________\/\\\_\/\\\___\/\\\____/\\\/\\\___\/\\\_______\/\\\_\//\\\__/\\\_____\/\\\_/\\__  
+         _\/\\\\\\\\\\\\\\\_\/\\\_\/\\\___\/\\\__/\\\/\///\\\_\/\\\\\\\\\\\\\/___\///\\\\\/______\//\\\\\___ 
+          _\///////////////__\///__\///____\///__\///____\///__\/////////////_______\/////_________\/////____*/
 
 const Discord = require('discord.js');
 const client = new Discord.Client();
@@ -186,6 +194,60 @@ client.on("message", async message => {
         return await message.channel.send(embed);
   }
 
+if (command === "kick") {
+    
+	  
+    if (message.author.id !== config.owner) 
+      if(!message.member.hasPermission(["KICK_MEMBERS", "ADMINISTRATOR"])) return message.channel.send("You dont have permission to perform this command!")
+    
+
+    if(!message.guild.me.hasPermission(["KICK_MEMBERS", "ADMINISTRATOR"])) return message.channel.send("I dont have permission to do this!")
+
+    let kickMember = message.mentions.members.first() || message.guild.members.get(args[0]) 
+    if(!kickMember) return message.channel.send("Please provide a user to kick!")
+
+    if (`${message.author.id}` === `${kickMember.id}`) {
+      await type(message.channel,true,3);
+      await message.channel.send("i'm not sure why you would kick yourself");
+      return await type(message.channel,false,0);
+    }
+
+    if (`${kickMember.id}` === `${config.owner}`) {
+      await type(message.channel,true,3);
+      await message.channel.send("you can't kick the bot owner.");
+      return await type(message.channel,false,0);
+    }
+
+    if (!kickMember.kickable) {
+      await type(message.channel,true,3);
+      await message.channel.send("guild member is too powerful");
+      return await type(message.channel,false,0);
+    }
+
+    let reason = args.slice(1).join(' ');
+    if (!reason) {
+      reason = "No reason provided";
+    }
+
+    await kickMember.kick(reason)
+      .catch(error => sendRandomEmbed(message.channel,`Error` , `Sorry ${message.author}, I couldn't kick because of : ${error}`,0xFF0000))
+    await sendRandomEmbed(message.channel,`Kick Event` , `${kickMember} has been kicked by ${message.author} \n reason: ${reason}`,0xFFD000)
+    return;
+  
+    /*let embed = new Discord.RichEmbed()
+    .setColor(colours.redlight)
+    .setAuthor(`${message.guild.name} Modlogs`, message.guild.iconURL)
+    .addField("Moderation:", "kick")
+    .addField("Mutee:", kickMember.user.username)
+    .addField("Moderator:", message.author.username)
+    .addField("Reason:", reason)
+    .addField("Date:", message.createdAt.toLocaleString())
+    
+        let sChannel = message.guild.channels.find(c => c.name === "modlogs")
+        sChannel.send(embed)*/
+
+  }
+	
   if (command === "avatar") {
   let member = message.mentions.members.first() || message.guild.members.get(args[0]);
   let Avatar = member.user.avatarURL
