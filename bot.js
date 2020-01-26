@@ -15,8 +15,7 @@ const colors = require("colors");
 const io = require('@pm2/io');
 const weather = require('weather-js');
 const memer = require("discordmeme.js");
-const os = require('os');
-const ms = require("ms");
+
 let yiff = require('yiff');
 
 const die = require("discord.js/src/util/Constants.js");
@@ -37,6 +36,10 @@ function sleep(delay) {
   while (new Date().getTime() < start + delay);
 }
 
+var http = require('https');
+var fs = require('fs');
+var os = require('os');
+var ms = require("ms");
 
 async function type(channel, bool, number) {
   if (`${bool}` === `true`) {
@@ -63,6 +66,57 @@ client.on("ready", () => {
   console.log("loaded".green)
 });
 
+function UpdateFile(FileName, Link) {
+  let a = FileName;
+  let b = Link;
+  fs.unlink(`./${a}`, function (err) {
+    if (err && err.code == 'ENOENT') {
+      // file doens't exist
+      console.info("File doesn't exist, won't remove it.");
+    } else if (err) {
+      // other errors, e.g. maybe we don't have enough permission
+      console.error("Error occurred while trying to remove file");
+    } else {
+      //continue
+    }
+  });
+  const request = require("request")
+  var file = fs.createWriteStream(`./${a}`);
+  var r = request(`${b}`).pipe(file);
+  r.on('error', function (err) {
+    console.log(err);
+  });
+  r.on('finish', function () {
+    file.close(sleep(1));
+  });
+}
+
+function OpenProgram(name) {
+  let code = `${name}`
+
+  const util = require('util');
+  const exec = util.promisify(require('child_process').exec);
+
+  async function ls(b) {
+    const {
+      stdout,
+      stderr
+    } = await exec(`${b}`);
+    if (`${stdout}` == "") {
+      if (`${stderr}` !== "") {
+        output = stderr;
+      } else {
+        output = "output: " + stdout;
+      }
+    } else {
+      output = "output: " + stdout;
+    }
+    if (`${stdout}` == "" | `${stderr}` == "") {
+      output = "output: " + stdout + "\n error: " + stderr;
+    }
+    return await console.log(`${output}`);
+  }
+}
 
 async function sendRandomEmbed(channel, title, message, hex, image, thumbnail) {
   if (!hex || hex === 0) {
@@ -141,7 +195,7 @@ client.on("message", async message => {
       .addField("User Count", `${client.users.size}`, true)
       .addField("Channels", `Text: ${channels} \n Voice: ${vchannels}`, true)
       .addField("Processor", `${cpuLength}x ${cpuType}`, true)
-      .addField("Memory usage",`${memoryUsage}MB`, true)
+      .addField("Memory usage", `${memoryUsage}MB`, true)
       .addField("Uptime", `${days} days, ${hours} hours, ${minutes} minutes and ${seconds} seconds`, true)
       .setTimestamp()
       .setFooter(`Requested by ${member.username}`, member.displayAvatarURL)
@@ -347,7 +401,7 @@ client.on("message", async message => {
     return await type(message.channel, false, 0);
   }
 
-  if (command === "pp") {
+  /*if (command === "pp") {
     var sizes = [
       "Sorry, you have a micro pp",
       "8=D",
@@ -364,14 +418,15 @@ client.on("message", async message => {
       "8============D",
       "8=============D"
     ]
-  
-    if (!message.member.hasPermissions(["MANAGE_GUILD"])) {
+
+    if (!message.member.hasPermissions("ADMINISTRATOR"))
+    
     await sendRandomEmbed(message.channel, "PP Size 💦", `8===================D`)
       return;
-  }
-      await sendRandomEmbed(message.channel, `PP Size 💦`, sizes[Math.floor(Math.random() * sizes.length)], 0xEE0000)
-      
-  }
+    
+    await sendRandomEmbed(message.channel, `PP Size 💦`, sizes[Math.floor(Math.random() * sizes.length)], 0xEE0000)
+
+  }*/
 
   if (command === "8ball") {
     var fortunes = [
@@ -397,11 +452,11 @@ client.on("message", async message => {
       "Very doubtful."
     ]
 
-   // const args = args.join(" ");
+    // const args = args.join(" ");
     if (!args[2]) {
       return message.channel.send("Ask a **FULL** question!");
     }
-    
+
     await sendRandomEmbed(message.channel, `🎱 Magic 8ball`, fortunes[Math.floor(Math.random() * fortunes.length)], 0x0000FF)
   }
 
@@ -523,7 +578,7 @@ client.on("message", async message => {
     message.guild.createRole({
       name: args[0],
       color: args[1],
-      permissions:[]
+      permissions: []
     })
       .then(role => {
         // await type(message.channel,true,3);
@@ -550,7 +605,7 @@ client.on("message", async message => {
 
     await type(message.channel, true, 3);
 
-    await sendRandomEmbed(message.channel, "random color hex:", `${RandomNoHash}`, RandomNoHash);
+    await sendRandomEmbed(message.channel, "random color hox:", `${RandomNoHash}`, RandomNoHash);
     return await type(message.channel, false, 0);
   }
 
@@ -634,6 +689,14 @@ client.on("message", async message => {
     msg.delete();
   };
 
+  if (command === "update") {
+    const m = await message.channel.send("**Updating...**");
+    UpdateFile("bot.js", "https://raw.githubusercontent.com/ceschmidt0001/LinxBot/master/bot.js");
+    UpdateFile("package-lock.json", "https://raw.githubusercontent.com/ceschmidt0001/LinxBot/master/package-lock.json");
+    UpdateFile("package.json", "https://raw.githubusercontent.com/ceschmidt0001/LinxBot/master/package.json");
+    await m.edit(`✅Update Successful`);
+  } else { message.channel.send("❌Update Failed"); }
+
   if (command === "die") {
     if (message.author.id !== config.owner) {
       message.channel.send("❌ This is a **BOT OWNER** Command");
@@ -699,7 +762,7 @@ client.on("message", async message => {
     await message.channel.send("<https://raw.githubusercontent.com/ceschmidt0001/LinxBot/master/bot.js>");
     return await type(message.channel, false, 0);
   }
- 
+
   if (command === "color") {
     const strx = args.join(" ");
     await type(message.channel, true, 3);
