@@ -689,14 +689,6 @@ client.on("message", async message => {
     msg.delete();
   };
 
-  if (command === "update") {
-    const m = await message.channel.send("**Updating...**");
-    UpdateFile("bot.js", "https://raw.githubusercontent.com/ceschmidt0001/LinxBot/master/bot.js");
-    UpdateFile("package-lock.json", "https://raw.githubusercontent.com/ceschmidt0001/LinxBot/master/package-lock.json");
-    UpdateFile("package.json", "https://raw.githubusercontent.com/ceschmidt0001/LinxBot/master/package.json");
-    await m.edit(`✅Update Successful`);
-  } else { message.channel.send("❌Update Failed"); }
-
   if (command === "die") {
     if (message.author.id !== config.owner) {
       message.channel.send("❌ This is a **BOT OWNER** Command");
@@ -708,6 +700,19 @@ client.on("message", async message => {
       sleep(100);
       process.exit(0);
     });
+  }
+
+   if (command === "update") {
+    type(message.channel, true, 3);
+
+    const m = await message.channel.send("**Updating...**");
+    UpdateFile("bot.js", "https://raw.githubusercontent.com/ceschmidt0001/LinxBot/master/bot.js");
+    UpdateFile("package-lock.json", "https://raw.githubusercontent.com/ceschmidt0001/LinxBot/master/package-lock.json");
+    UpdateFile("package.json", "https://raw.githubusercontent.com/ceschmidt0001/LinxBot/master/package.json");
+    await m.edit(`✅Update Successful`);
+  }  else if (err) {
+    // other errors, e.g. maybe we don't have enough permission
+   await message.channel.send("❌Update Failed"); 
   }
 
   if (command === "yiffspamdm") {
