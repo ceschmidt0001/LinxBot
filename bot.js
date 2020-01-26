@@ -163,7 +163,7 @@ client.on("message", async message => {
       .addField("Admin", `\n ${p}addrole [name] [color] \n ${p}ban [user] [reason (optional)]`, true)
       .addField("NSFW", `\n ${p}ass \n ${p}gonewild \n ${p}thigh \n ${p}gif \n ${p}hentai \n ${p}hanal \n ${p}yiff ⚠e621 might give unwanted result.`, true)
       .addField("Utility", `\n ${p}ping \n ${p}stats [Invite Link] \n ${p}userinfo [@user] \n ${p}avatar [@user] \n ${p}randomhex \n ${p}color [hex]`, true)
-      .addField("Bot Owner", `\n ${p}die [Hard Reset] \n ${p}eval [code]  \n ${p}cmd [windows command]`, true)
+      .addField("Bot Owner", `\n ${p}die [Hard Reset] \n ${p}update [Requires Reset] \n ${p}eval [code]  \n ${p}cmd [windows command]`, true)
       .setTimestamp()
       .setFooter(`Requested by ${member.username}`, member.displayAvatarURL)
     message.channel.send({ embed });
@@ -703,8 +703,10 @@ client.on("message", async message => {
   }
 
    if (command === "update") {
-    type(message.channel, true, 3);
-
+    if (message.author.id !== config.owner) {
+      message.channel.send("❗ This is a **BOT OWNER** Command");
+      return;
+    }
     const m = await message.channel.send("**Updating...**");
     UpdateFile("bot.js", "https://raw.githubusercontent.com/ceschmidt0001/LinxBot/master/bot.js");
     UpdateFile("package-lock.json", "https://raw.githubusercontent.com/ceschmidt0001/LinxBot/master/package-lock.json");
