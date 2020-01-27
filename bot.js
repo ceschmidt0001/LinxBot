@@ -758,12 +758,11 @@ client.on("message", async message => {
     return await type(message.channel, false, 0);
   }
 
-     if (command === "cowsay") {
-    const strx = args.join(" ");
-   let msg = require("child_process").execSync("cowsay \"${strx}\"").toString();
-   await type(message.channel, true, 3);
-    await message.channel.send("```\n"${msg}"```");
-    return await type(message.channel, false, 0);
+    if (command === "cowsay") {
+    let strx = args.join(" ");
+  var  msg = require("child_process").execSync("cowsay \"${strx}\"").toString();
+   message.channel.send({ code: "asciidoc"}, `${msg}`);
+//await message.channel.send("`\`\` \`\`\`xl\n${msg}\n\`\`\``");
   }
   
     if (command === "update") {
