@@ -762,7 +762,7 @@ client.on("message", async message => {
     const strx = args.join(" ");
    var msg = require("child_process").execSync("cowsay \"${strx}\"").toString()
    await type(message.channel, true, 3);
-    await message.channel.send("```${msg}```");
+    await message.channel.send("```"${msg}"```");
     return await type(message.channel, false, 0);
   }
   
