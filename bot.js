@@ -760,12 +760,18 @@ client.on("message", async message => {
   }
 
     if (command === "cowsay") {
+       if (!args[0]) {
+      return message.channel.send("!cowsay [optional: -f cowfile] [text] \n say ,cowsay -l for list of cowfiles.");
+    }
     let strx = args.join(" ");
   let msg = require("child_process").execSync(`cowsay ${strx}`).toString();
    message.channel.send(`${msg}`, { code: "asciidoc"});
   }
   
    if (command === "figlet") {
+      if (!args[0]) {
+      return message.channel.send("!figlet [text to figlet]");
+    }
     let strx = args.join(" ");
   let msg = require("child_process").execSync(`figlet ${strx}`).toString();
    message.channel.send(`${msg}`, { code: "asciidoc"});
