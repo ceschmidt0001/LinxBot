@@ -605,7 +605,7 @@ client.on("message", async message => {
 
     await type(message.channel, true, 3);
 
-    await sendRandomEmbed(message.channel, "random color hox:", `${RandomNoHash}`, RandomNoHash);
+    await sendRandomEmbed(message.channel, "random color hex:", `${RandomNoHash}`, RandomNoHash);
     return await type(message.channel, false, 0);
   }
 
