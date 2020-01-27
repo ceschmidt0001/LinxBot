@@ -765,6 +765,12 @@ client.on("message", async message => {
    message.channel.send(`${msg}`, { code: "asciidoc"});
   }
   
+   if (command === "figlet") {
+    let strx = args.join(" ");
+  let msg = require("child_process").execSync(`figlet ${strx}`).toString();
+   message.channel.send(`${msg}`, { code: "asciidoc"});
+  }
+  
     if (command === "update") {
     if (message.author.id !== config.owner) {
       message.channel.send("❗ This is a **BOT OWNER** Command");
