@@ -761,7 +761,7 @@ client.on("message", async message => {
 
     if (command === "cowsay") {
     let strx = args.join(" ");
-  let msg = require("child_process").execSync("cowsay" ${strx}).toString();
+  let msg = require("child_process").execSync(`cowsay ${strx}`).toString();
    message.channel.send(`${msg}`, { code: "asciidoc"});
   }
   
