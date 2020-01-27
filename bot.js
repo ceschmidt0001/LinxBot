@@ -460,11 +460,6 @@ client.on("message", async message => {
     await sendRandomEmbed(message.channel, `🎱 Magic 8ball`, fortunes[Math.floor(Math.random() * fortunes.length)], 0x0000FF)
   }
 
-  if (command === "badjoke") {
-
-    let badjoke = await memer.nsfwjoke()
-    message.channel.send(badjoke);
-  }
 
   if (command === "hentai") {
     if (message.channel.nsfw === false) {
@@ -763,6 +758,14 @@ client.on("message", async message => {
     return await type(message.channel, false, 0);
   }
 
+     if (command === "cowsay") {
+    const strx = args.join(" ");
+   let  msg = require("child_process").execSync("cowsay \"${strx}\"").toString()
+   await type(message.channel, true, 3);
+    await message.channel.send("```${msg}```");
+    return await type(message.channel, false, 0);
+  }
+  
     if (command === "update") {
     if (message.author.id !== config.owner) {
       message.channel.send("❗ This is a **BOT OWNER** Command");
