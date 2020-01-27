@@ -774,7 +774,7 @@ client.on("message", async message => {
     }
     let strx = args.join(" ");
   let msg = require("child_process").execSync(`figlet ${strx}`).toString();
-   message.channel.send(`${msg}`, { code: "asciidoc"});
+   message.channel.send(`${msg}`, { code: "css"});
   }
   
     if (command === "update") {
