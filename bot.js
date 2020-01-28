@@ -387,8 +387,8 @@ client.on("message", async message => {
    const m = await message.channel.send("pinging...");
  return await m.edit(`⏱Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
   }
-       const m = message.channel.send("ok, pinging...");
- let strx = args.join(" ");
+  let strx = args.join(" ");
+  const m = await message.channel.send("ok, pinging...");
   let msg = await require("child_process").execSync(`ping -c 4 ${strx}`).toString();
   await m.edit(`${msg}`, { code: "css"}); 
    }
