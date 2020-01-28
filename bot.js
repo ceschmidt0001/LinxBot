@@ -1,4 +1,4 @@
-/* Version 0.20.0
+/* Version 0.28.0
   __/\\\________________________________________________/\\\\\\\\\\\\\_______________________________        
    _\/\\\_______________________________________________\/\\\/////////\\\_____________________________       
     _\/\\\______________/\\\_____________________________\/\\\_______\/\\\___________________/\\\______      
@@ -387,7 +387,7 @@ client.on("message", async message => {
    const m = await message.channel.send("pinging...");
  return await m.edit(`⏱Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
   }
-const m = await message.channel.send("pinging...");
+const m = message.channel.send("ok, pinging...");
  let strx = args.join(" ");
   let msg = await require("child_process").execSync(`ping -c 4 ${strx}`).toString();
   await m.edit(`${msg}`, { code: "css"});
