@@ -383,11 +383,16 @@ client.on("message", async message => {
   }
 
   if (command === "ping") {
-    await type(message.channel, true, 3);
-    const m = await message.channel.send("pinging...");
-    await m.edit(`⏱Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
-    return await type(message.channel, false, 0);
+      if (!args[0]) {
+      return 
+   const m = await message.channel.send("pinging...");
+   await m.edit(`⏱Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
   }
+const m = await message.channel.send("pinging...");
+ let strx = args.join(" ");
+  let msg = require("child_process").execSync(`ping -c 4 ${strx}`).toString();
+  await m.edit(`${msg}`, { code: "css"});
+   }
 
   if (command === "avatar") {
     let member = message.mentions.members.first() || message.guild.members.get(args[0]);
