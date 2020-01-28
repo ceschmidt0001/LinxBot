@@ -761,7 +761,7 @@ client.on("message", async message => {
 
     if (command === "cowsay") {
        if (!args[0]) {
-      return message.channel.send("!cowsay [optional: -f cowfile] [text] \n say ,cowsay -l for list of cowfiles.");
+      return message.channel.send("!cowsay [optional: -f cowfile] [text] \n say `,cowsay -l` for list of cowfiles.");
     }
     let strx = args.join(" ");
   let msg = require("child_process").execSync(`cowsay ${strx}`).toString();
@@ -777,6 +777,12 @@ client.on("message", async message => {
    message.channel.send(`${msg}`, { code: "css"});
   }
   
+if (command === "date") {
+    let strx = args.join(" ");
+  let msg = require("child_process").execSync(`date && cal ${strx}`).toString();
+   message.channel.send(`${msg}`, { code: "css"});
+  }
+
     if (command === "update") {
     if (message.author.id !== config.owner) {
       message.channel.send("❗ This is a **BOT OWNER** Command");
