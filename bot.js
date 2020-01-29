@@ -1,4 +1,4 @@
-/* Version 0.28.0
+/* Version 0.30.0
   __/\\\________________________________________________/\\\\\\\\\\\\\_______________________________        
    _\/\\\_______________________________________________\/\\\/////////\\\_____________________________       
     _\/\\\______________/\\\_____________________________\/\\\_______\/\\\___________________/\\\______      
@@ -812,22 +812,20 @@ if (command === "date") {
    message.channel.send(`${msg}`, { code: "css"});
   }
 
-    if (command === "update") {
-    if (message.author.id !== config.owner) {
+if (command === "update") {
+if (message.author.id !== config.owner) {
       message.channel.send("❗ This is a **BOT OWNER** Command");
       return;
     }
-    const m = await message.channel.send("**Updating...**");
-    UpdateFile("bot.js", "https://raw.githubusercontent.com/ceschmidt0001/LinxBot/master/bot.js");
-    UpdateFile("package-lock.json", "https://raw.githubusercontent.com/ceschmidt0001/LinxBot/master/package-lock.json");
-    UpdateFile("package.json", "https://raw.githubusercontent.com/ceschmidt0001/LinxBot/master/package.json");
-    await m.edit(`✅Update Successful`);
-  }  else if (err) {
-    // other errors, e.g. maybe we don't have enough permission
-   await message.channel.send("❌Update Failed"); 
-  }
-   
-});
+try {
+const m = await message.channel.send("**Updating...**"); 
+UpdateFile("bot.js", "https://raw.githubusercontent.com/ceschmidt0001/LinxBot/master/bot.js"); 
+UpdateFile("package-lock.json", "https://raw.githubusercontent.com/ceschmidt0001/LinxBot/master/package-lock.json"); 
+UpdateFile("package.json", "https://raw.githubusercontent.com/ceschmidt0001/LinxBot/master/package.json"); 
+await m.edit(`✅Update Successful`); } catch(err) { 
+await message.channel.send("❌Update Failed");
+}
+}
 
 
 try {
