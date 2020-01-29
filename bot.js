@@ -393,7 +393,7 @@ client.on("message", async message => {
 if (command === "ping") {
       if (!args[0]) {    
    const m = await message.channel.send("pinging...");
- await m.edit(`⏱Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
+ return await m.edit(`⏱Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
   } else {
 try{
  let strx = args.join(" ");
@@ -408,6 +408,7 @@ try{
  
   
 /*if (command === "ping") {
+if (!args[0]) {
  const m = await message.channel.send("pinging...");
  return await m.edit(`⏱Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
   }
