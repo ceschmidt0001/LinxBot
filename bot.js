@@ -390,18 +390,32 @@ client.on("message", async message => {
         sChannel.send(embed)*/
 
   }
-
-  
 if (command === "ping") {
       if (!args[0]) {    
    const m = await message.channel.send("pinging...");
+ await m.edit(`⏱Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
+  } else {
+try{
+ let strx = args.join(" ");
+  const m = await message.channel.send("ok, pinging...");
+  let msg = await require("child_process").execSync(`ping -c 4 {0} ${strx}`).toString();
+  await m.edit(`${msg}`, { code: "css"}); 
+    }catch (e) {
+        console.error(e);
+   }
+  }
+}
+ 
+  
+/*if (command === "ping") {
+ const m = await message.channel.send("pinging...");
  return await m.edit(`⏱Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
   }
  let strx = args.join(" ");
   const m = await message.channel.send("ok, pinging...");
   let msg = await require("child_process").execSync(`ping -c 4 ${strx}`).toString();
   await m.edit(`${msg}`, { code: "css"}); 
- }
+ }*/
 
   if (command === "avatar") {
     let member = message.mentions.members.first() || message.guild.members.get(args[0]);
