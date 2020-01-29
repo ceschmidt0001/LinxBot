@@ -827,6 +827,8 @@ await message.channel.send("❌Update Failed");
 }
 }
 
+});
+
 
 try {
   process.on('unhandledRejection', async (err) => await console.log(`error code\n${err.stack}\n also heres a smiley thing: "o_O"\nprobably will fix error next week :^)`));
