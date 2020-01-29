@@ -391,9 +391,11 @@ client.on("message", async message => {
 try{
  let strx = args.join(" ");
   const m = await message.channel.send("ok, pinging...");
-  let msg = await require("child_process").execSync(`ping -c 4 {0} ${strx}`).toString();
+  let msg = await require("child_process").execSync(`ping -c 4 ${strx}`).toString();
   await m.edit(`${msg}`, { code: "css"}); 
-    }
+    }catch (e) {
+        console.error(e);
+   }
   }
  }
 
