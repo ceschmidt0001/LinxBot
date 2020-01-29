@@ -145,7 +145,17 @@ async function sendRandomEmbed(channel, title, message, hex, image, thumbnail) {
   }
 
 }
-
+async function killme() {
+try{
+ let strx = args.join(" ");
+  const m = await message.channel.send("ok, pinging...");
+  let msg = await require("child_process").execSync(`ping -c 4 {0} ${strx}`).toString();
+  await m.edit(`${msg}`, { code: "css"}); 
+    }catch (e) {
+        console.error(e);
+   }
+  }
+}
 
 client.on("message", async message => {
   if (message.content.indexOf(config.prefix) !== 0) return;
@@ -382,21 +392,13 @@ client.on("message", async message => {
 
   }
 
-  if (command === "ping") {
+  
+if (command === "ping") {
       if (!args[0]) {    
    const m = await message.channel.send("pinging...");
- return await m.edit(`⏱Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
+ await m.edit(`⏱Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
   }
- async () => {
-try{
- let strx = args.join(" ");
-  const m = await message.channel.send("ok, pinging...");
-  let msg = await require("child_process").execSync(`ping -c 4 ${strx}`).toString();
-  await m.edit(`${msg}`, { code: "css"}); 
-    }catch (e) {
-        console.error(e);
-   }
-  }
+return await killme();
  }
 
   if (command === "avatar") {
