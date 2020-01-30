@@ -16,7 +16,7 @@ const colors = require("colors");
 const io = require('@pm2/io');
 const weather = require('weather-js');
 const memer = require("discordmeme.js");
-const dir = Object.getOwnPropertyNames();
+const math = require('mathjs');
 
 let yiff = require('yiff');
 
