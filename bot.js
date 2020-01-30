@@ -817,7 +817,7 @@ if (!args[0]) {
 
 if (command === "date") {
     let strx = args.join(" ");
-  let msg = require("child_process").execSync(`date && cal ${strx}`).toString();
+  let msg = require("child_process").execSync(`date "+%A, %d" && cal ${strx}`).toString();
    message.channel.send(`${msg}`, { code: "css"});
   }
 
