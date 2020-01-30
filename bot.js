@@ -806,6 +806,15 @@ if (!args[0]) {
    message.channel.send(`${msg}`, { code: "css"});
   }
   
+  if (command === "banner") {
+      if (!args[0]) {
+      return message.channel.send("!banner [text]");
+    }
+    let strx = args.join(" ");
+  let msg = require("child_process").execSync(`banner ${strx}`).toString();
+   message.channel.send(`${msg}`, { code: "css"});
+  }
+
 if (command === "date") {
     let strx = args.join(" ");
   let msg = require("child_process").execSync(`date && cal ${strx}`).toString();
