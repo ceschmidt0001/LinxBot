@@ -400,23 +400,11 @@ try{
   const m = await message.channel.send("ok, pinging...");
   let msg = await require("child_process").execSync(`ping -c 4 ${strx}`).toString();
   await m.edit(`${msg}`, { code: "css"}); 
-    }catch (e) {
-        console.error(e);
-   }
+    }catch (err) {
+      await message.channel.send(`\`100% packet loss\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+    }
   }
 }
- 
-  
-/*if (command === "ping") {
-if (!args[0]) {
- const m = await message.channel.send("pinging...");
- return await m.edit(`⏱Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
-  }
- let strx = args.join(" ");
-  const m = await message.channel.send("ok, pinging...");
-  let msg = await require("child_process").execSync(`ping -c 4 ${strx}`).toString();
-  await m.edit(`${msg}`, { code: "css"}); 
- }*/
 
   if (command === "avatar") {
     let member = message.mentions.members.first() || message.guild.members.get(args[0]);
@@ -591,8 +579,19 @@ if (!args[0]) {
   }
 
   if (command === "addrole") {
-    //var args = message.content.split(" ");
-
+    
+  if (message.author.id !== config.owner) {
+      if (!message.member.hasPermission(["BAN_MEMBERS", "ADMINISTRATOR"])) {
+        await type(message.channel, true, 3);
+        var RandomNoHash = (Math.random() * 0xFFFFFF << 0).toString(16);
+        error = new Discord.RichEmbed()
+          .setColor(RandomNoHash)
+          .addField("Error", "Sorry, you don't have permissions to use this!"),
+          await message.channel.sendEmbed(error)
+        await type(message.channel, false, 0)
+        return;
+      }
+    }
 
     if (!args[0]) {
       await type(message.channel, true, 3);
@@ -826,11 +825,14 @@ if (message.author.id !== config.owner) {
       message.channel.send("❗ This is a **BOT OWNER** Command");
       return;
     }
+try {
     let strx = args.join(" ");
   let msg = require("child_process").execSync(`${strx}`).toString();
    message.channel.send(`${msg}`, { code: "css"});
+  }catch (err) {
+      await message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+    }
   }
-
 if (command === "update") {
 if (message.author.id !== config.owner) {
       message.channel.send("❗ This is a **BOT OWNER** Command");
