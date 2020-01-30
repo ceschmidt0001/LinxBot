@@ -799,7 +799,7 @@ if (!args[0]) {
   
    if (command === "figlet") {
       if (!args[0]) {
-      return message.channel.send("!figlet [text to figlet]");
+      return message.channel.reply("!figlet [optional: -k (letters less smushed)][text to figlet]");
     }
     let strx = args.join(" ");
   let msg = require("child_process").execSync(`figlet ${strx}`).toString();
