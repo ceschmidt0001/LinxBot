@@ -655,7 +655,7 @@ if (!args[0]) {
     }
   }
 
-  if (command === "cmd") {
+  /*if (command === "cmd") {
     let ownerID = `${config.owner}`
     if (message.author.id !== ownerID) {
       message.channel.send("❌ This is a **BOT OWNER** Command");
@@ -686,7 +686,7 @@ if (!args[0]) {
       return await message.channel.send("note: (ignore blank errors/outputs)\n" + `\`\`\`cmd\n${output}\n\`\`\``);
     }
     ls(`${code}`);
-  }
+  }*/
 
   if (command === "yiff") {
     if (message.channel.nsfw === false) {
@@ -818,6 +818,16 @@ if (!args[0]) {
 if (command === "date") {
     let strx = args.join(" ");
   let msg = require("child_process").execSync(`date "+Today is: %A, %d" && cal ${strx}`).toString();
+   message.channel.send(`${msg}`, { code: "css"});
+  }
+
+ if (command === "cmd") {
+if (message.author.id !== config.owner) {
+      message.channel.send("❗ This is a **BOT OWNER** Command");
+      return;
+    }
+    let strx = args.join(" ");
+  let msg = require("child_process").execSync(`${strx}`).toString();
    message.channel.send(`${msg}`, { code: "css"});
   }
 
