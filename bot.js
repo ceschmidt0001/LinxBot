@@ -823,7 +823,7 @@ client.on("message", async message => {
     }
     let strx = args.join(" ");
     let msg = require("child_process").execSync(`cowsay ${strx}`).toString();
-    message.channel.send(`${msg}`, { code: "x1" });
+    message.channel.send(`${msg}`, { code: "md" });
   }
 
   if (command === "figlet") {
