@@ -236,11 +236,11 @@ client.on("message", async message => {
     let strx = args.join(" ");
 
     if (!args[0]) {
-      message.channel.send(`Please specify guild verification level: 0,1,2,3 or 4 \n Current level:${message.guild.verificationLevel}`);
+      message.channel.send(`Please specify guild verification level: 0,1,2,3 or 4 \n Current level: *${message.guild.verificationLevel}*`);
       return;
     }
     message.guild.setVerificationLevel(strx)
-      .then(g => message.channel.send(`Updated guild verification level to \`${g.verificationLevel}\``))
+      .then(g => message.channel.send(`Updated guild verification level to *${g.verificationLevel}*`))
       .catch(console.error);
   }
   // Weather Command
