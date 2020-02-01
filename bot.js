@@ -174,7 +174,7 @@ client.on("message", async message => {
       .addField("Admin", `\n ${p}addrole [name] [color] `, true)
       .addField("NSFW", `\n ${p}ass \n ${p}gonewild \n ${p}thigh \n ${p}gif \n ${p}hentai \n ${p}hanal \n ${p}yiff ⚠e621 might give unwanted result.`, true)
       .addField("Utility", `\n ${p}ping \n ${p}date [optional: -3] \n ${p}stats [Invite Link] \n ${p}userinfo [@user] \n ${p}avatar [@user] \n ${p}randomhex \n ${p}color [hex]`, true)
-      .addField("Bot Owner", `\n ${p}die [Hard Reset] \n ${p}update [Requires Reset]\n ${p}eval [code]  \n ${p}cmd [bash]`, true)
+      .addField("Bot Owner", `\n ${p}die [Hard Reset] \n ${p}update [Requires Reset] ${p}eval [code]  \n ${p}cmd [bash]`, true)
       .setTimestamp()
       .setFooter(`Requested by ${member.username}`, member.displayAvatarURL)
     message.channel.send({ embed });
