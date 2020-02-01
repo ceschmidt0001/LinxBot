@@ -823,7 +823,7 @@ client.on("message", async message => {
     }
     let strx = args.join(" ");
     let msg = require("child_process").execSync(`cowsay ${strx}`).toString();
-    message.channel.send(`${msg}`, { code: "asciidoc" });
+    message.channel.send(`${msg}`, { code: "x1" });
   }
 
   if (command === "figlet") {
@@ -832,7 +832,7 @@ client.on("message", async message => {
     }
     let strx = args.join(" ");
     let msg = require("child_process").execSync(`figlet ${strx}`).toString();
-    message.channel.send(`${msg}`, { code: "css" });
+    message.channel.send(`${msg}`, { code: "CSS" });
   }
 
   if (command === "banner") {
