@@ -832,7 +832,7 @@ client.on("message", async message => {
     }
     let strx = args.join(" ");
     let msg = require("child_process").execSync(`figlet ${strx}`).toString();
-    message.channel.send(`${msg}`, { code: "fix" });
+    message.channel.send(`${msg}`, { code: "md" });
   }
 
   if (command === "banner") {
@@ -841,7 +841,7 @@ client.on("message", async message => {
     }
     let strx = args.join(" ");
     let msg = require("child_process").execSync(`banner ${strx}`).toString();
-    message.channel.send(`${msg}`, { code: "css" });
+    message.channel.send(`${msg}`, { code: "md" });
   }
 
   if (command === "date") {
@@ -860,7 +860,7 @@ client.on("message", async message => {
       let msg = require("child_process").execSync(`${strx}`).toString();
       message.channel.send(`${msg}`, { code: "css" });
     } catch (err) {
-      await message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+      await message.channel.send(`\`ERROR\` \`\`\`md\n${clean(err)}\n\`\`\``);
     }
   }
   if (command === "update") {
