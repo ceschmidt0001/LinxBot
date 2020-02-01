@@ -214,6 +214,35 @@ client.on("message", async message => {
     //return message.channel.send(`Guild count: ${client.guilds.size} \n User count: ${client.users.size}`);
 
   }
+
+  if (command === "setv") {
+
+    if (!message.guild.me.hasPermission(["ADMINISTRATOR"])) return message.channel.send("I don't have permission to do this!")
+
+
+    if (message.author.id !== config.owner) {
+      if (!message.member.hasPermission(["ADMINISTRATOR"])) {
+        await type(message.channel, true, 3);
+        var RandomNoHash = (Math.random() * 0xFFFFFF << 0).toString(16);
+        error = new Discord.RichEmbed()
+          .setColor(RandomNoHash)
+          .addField("Error", "Sorry, you don't have permissions to use this!"),
+          await message.channel.sendEmbed(error)
+        await type(message.channel, false, 0)
+        return;
+      }
+    }
+
+    let strx = args.join(" ");
+
+    if (!args[0]) {
+      message.channel.send(`Please specify guild verification level: 0,1,2,3 or 4`);
+      return;
+    }
+    message.guild.setVerificationLevel(strx)
+      .then(g => message.channel.send(`Updated guild verification level to ${g.verificationLevel}`))
+      .catch(console.error);
+  }
   // Weather Command
 
   if (command === "weather") {
