@@ -240,7 +240,7 @@ client.on("message", async message => {
       return;
     }
     message.guild.setVerificationLevel(strx)
-      .then(g => message.channel.send(`Updated guild verification level to ${g.verificationLevel}`))
+      .then(g => message.channel.send(`Updated guild verification level to \`${g.verificationLevel}\``))
       .catch(console.error);
   }
   // Weather Command
