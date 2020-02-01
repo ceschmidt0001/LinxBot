@@ -169,12 +169,12 @@ client.on("message", async message => {
     const embed = new Discord.RichEmbed()
       .setTitle("Command List")
       .setColor(RandomNoHash)
-      .addField("Fun", ` \n ${p}8ball [question] \n ${p}weather [City] \n ${p}neko \n ${p}badjoke \n ${p}meme`, true)
-      .addField("Moderation", `\n ${p}kick [user] [reason (optional)] \n ${p}giverole [user]  \n ${p}takerole [user]`, true)
-      .addField("Admin", `\n ${p}addrole [name] [color] \n ${p}ban [user] [reason (optional)]`, true)
+      .addField("Fun", ` \n ${p}8ball [question] \n ${p}banner [text] \n ${p}figlet [text] \n ${p}cowsay [text] \n ${p}weather [City] \n ${p}neko \n ${p}badjoke \n ${p}meme`, true)
+      .addField("Moderation", `\n ${p}ban [user] [reason (optional)] \n ${p}kick [user] [reason (optional)] \n ${p}giverole [user]  \n ${p}takerole [user]`, true)
+      .addField("Admin", `\n ${p}addrole [name] [color] `, true)
       .addField("NSFW", `\n ${p}ass \n ${p}gonewild \n ${p}thigh \n ${p}gif \n ${p}hentai \n ${p}hanal \n ${p}yiff ⚠e621 might give unwanted result.`, true)
-      .addField("Utility", `\n ${p}ping \n ${p}stats [Invite Link] \n ${p}userinfo [@user] \n ${p}avatar [@user] \n ${p}randomhex \n ${p}color [hex]`, true)
-      .addField("Bot Owner", `\n ${p}die [Hard Reset] \n ${p}update [Requires Reset] \n ${p}eval [code]  \n ${p}cmd [windows command]`, true)
+      .addField("Utility", `\n ${p}ping \n ${p}date [optional: -3] \n ${p}stats [Invite Link] \n ${p}userinfo [@user] \n ${p}avatar [@user] \n ${p}randomhex \n ${p}color [hex]`, true)
+      .addField("Bot Owner", `\n ${p}die [Hard Reset] \n ${p}update [Requires Reset] \n ${p}eval [code]  \n ${p}cmd [bash]`, true)
       .setTimestamp()
       .setFooter(`Requested by ${member.username}`, member.displayAvatarURL)
     message.channel.send({ embed });
@@ -391,21 +391,21 @@ client.on("message", async message => {
         sChannel.send(embed)*/
 
   }
-if (command === "ping") {
-      if (!args[0]) {    
-   const m = await message.channel.send("pinging...");
- return await m.edit(`⏱Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
-  } else {
-try{
- let strx = args.join(" ");
-  const m = await message.channel.send("ok, pinging...");
-  let msg = await require("child_process").execSync(`ping -c 4 ${strx}`).toString();
-  await m.edit(`${msg}`, { code: "css"}); 
-    }catch (err) {
-      await message.channel.send(`\`100% packet loss\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+  if (command === "ping") {
+    if (!args[0]) {
+      const m = await message.channel.send("pinging...");
+      return await m.edit(`⏱Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
+    } else {
+      try {
+        let strx = args.join(" ");
+        const m = await message.channel.send("ok, pinging...");
+        let msg = await require("child_process").execSync(`ping -c 4 ${strx}`).toString();
+        await m.edit(`${msg}`, { code: "css" });
+      } catch (err) {
+        await message.channel.send(`\`100% packet loss\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+      }
     }
   }
-}
 
   if (command === "avatar") {
     let member = message.mentions.members.first() || message.guild.members.get(args[0]);
@@ -580,9 +580,9 @@ try{
   }
 
   if (command === "addrole") {
-    
-  if (message.author.id !== config.owner) {
-      if (!message.member.hasPermission(["BAN_MEMBERS", "ADMINISTRATOR"])) {
+
+    if (message.author.id !== config.owner) {
+      if (!message.member.hasPermission(["ADMINISTRATOR"])) {
         await type(message.channel, true, 3);
         var RandomNoHash = (Math.random() * 0xFFFFFF << 0).toString(16);
         error = new Discord.RichEmbed()
@@ -607,7 +607,7 @@ try{
     })
       .then(role => {
         // await type(message.channel,true,3);
-        sendRandomEmbed(message.channel, "Role Created", `${role.name}`, role.color || 0x010101);
+        sendRandomEmbed(message.channel, "Role Created", `${role.name}`, role.color || 0x323232);
         //  return await type(message.channel,false,0);
       })
   };
@@ -788,66 +788,67 @@ try{
     return await type(message.channel, false, 0);
   }
 
-    if (command === "cowsay") {
-       if (!args[0]) {
+  if (command === "cowsay") {
+    if (!args[0]) {
       return message.channel.send("!cowsay [optional: -f cowfile] [text] \n say `,cowsay -l` for list of cowfiles.");
     }
     let strx = args.join(" ");
-  let msg = require("child_process").execSync(`cowsay ${strx}`).toString();
-   message.channel.send(`${msg}`, { code: "asciidoc"});
+    let msg = require("child_process").execSync(`cowsay ${strx}`).toString();
+    message.channel.send(`${msg}`, { code: "asciidoc" });
   }
-  
-   if (command === "figlet") {
-      if (!args[0]) {
+
+  if (command === "figlet") {
+    if (!args[0]) {
       return message.channel.reply("!figlet [optional: -k (letters less smushed)][text to figlet]");
     }
     let strx = args.join(" ");
-  let msg = require("child_process").execSync(`figlet ${strx}`).toString();
-   message.channel.send(`${msg}`, { code: "css"});
+    let msg = require("child_process").execSync(`figlet ${strx}`).toString();
+    message.channel.send(`${msg}`, { code: "css" });
   }
-  
+
   if (command === "banner") {
-      if (!args[0]) {
+    if (!args[0]) {
       return message.channel.send("!banner [text]");
     }
     let strx = args.join(" ");
-  let msg = require("child_process").execSync(`banner ${strx}`).toString();
-   message.channel.send(`${msg}`, { code: "css"});
+    let msg = require("child_process").execSync(`banner ${strx}`).toString();
+    message.channel.send(`${msg}`, { code: "css" });
   }
 
-if (command === "date") {
+  if (command === "date") {
     let strx = args.join(" ");
-  let msg = require("child_process").execSync(`date "+Today is: %A, %d" && cal ${strx}`).toString();
-   message.channel.send(`${msg}`, { code: "css"});
+    let msg = require("child_process").execSync(`date "+Today is: %A, %d" && cal ${strx}`).toString();
+    message.channel.send(`${msg}`, { code: "css" });
   }
 
- if (command === "cmd") {
-if (message.author.id !== config.owner) {
+  if (command === "cmd") {
+    if (message.author.id !== config.owner) {
       message.channel.send("❗ This is a **BOT OWNER** Command");
       return;
     }
-try {
-    let strx = args.join(" ");
-  let msg = require("child_process").execSync(`${strx}`).toString();
-   message.channel.send(`${msg}`, { code: "css"});
-  }catch (err) {
+    try {
+      let strx = args.join(" ");
+      let msg = require("child_process").execSync(`${strx}`).toString();
+      message.channel.send(`${msg}`, { code: "css" });
+    } catch (err) {
       await message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
     }
   }
-if (command === "update") {
-if (message.author.id !== config.owner) {
+  if (command === "update") {
+    if (message.author.id !== config.owner) {
       message.channel.send("❗ This is a **BOT OWNER** Command");
       return;
     }
-try {
-const m = await message.channel.send("**Updating...**"); 
-UpdateFile("bot.js", "https://raw.githubusercontent.com/ceschmidt0001/LinxBot/master/bot.js"); 
-UpdateFile("package-lock.json", "https://raw.githubusercontent.com/ceschmidt0001/LinxBot/master/package-lock.json"); 
-UpdateFile("package.json", "https://raw.githubusercontent.com/ceschmidt0001/LinxBot/master/package.json"); 
-await m.edit(`✅Update Successful`); } catch(err) { 
-await message.channel.send("❌Update Failed");
-}
-}
+    try {
+      const m = await message.channel.send("**Updating...**");
+      UpdateFile("bot.js", "https://raw.githubusercontent.com/ceschmidt0001/LinxBot/master/bot.js");
+      UpdateFile("package-lock.json", "https://raw.githubusercontent.com/ceschmidt0001/LinxBot/master/package-lock.json");
+      UpdateFile("package.json", "https://raw.githubusercontent.com/ceschmidt0001/LinxBot/master/package.json");
+      await m.edit(`✅Update Successful`);
+    } catch (err) {
+      await message.channel.send("❌Update Failed");
+    }
+  }
 
 });
 
