@@ -832,7 +832,7 @@ client.on("message", async message => {
     }
     let strx = args.join(" ");
     let msg = require("child_process").execSync(`figlet ${strx}`).toString();
-    message.channel.send(`${msg}`, { code: "diff" });
+    message.channel.send(`${msg}`, { code: "fix" });
   }
 
   if (command === "banner") {
