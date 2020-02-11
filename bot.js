@@ -93,33 +93,6 @@ function UpdateFile(FileName, Link) {
   });
 }
 
-function OpenProgram(name) {
-  let code = `${name}`
-
-  const util = require('util');
-  const exec = util.promisify(require('child_process').exec);
-
-  async function ls(b) {
-    const {
-      stdout,
-      stderr
-    } = await exec(`${b}`);
-    if (`${stdout}` == "") {
-      if (`${stderr}` !== "") {
-        output = stderr;
-      } else {
-        output = "output: " + stdout;
-      }
-    } else {
-      output = "output: " + stdout;
-    }
-    if (`${stdout}` == "" | `${stderr}` == "") {
-      output = "output: " + stdout + "\n error: " + stderr;
-    }
-    return await console.log(`${output}`);
-  }
-}
-
 async function sendRandomEmbed(channel, title, message, hex, image, thumbnail) {
   if (!hex || hex === 0) {
     hex = (Math.random() * 0xFFFFFF << 0).toString(16);
