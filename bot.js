@@ -402,7 +402,7 @@ client.on("message", async message => {
         let strx = args.join(" ");
         const m = await message.channel.send("ok, pinging...");
         let msg = await require("child_process").execSync(`ping -c 4 ${strx}`).toString();
-        await m.edit(`${msg}`, { code: "css" });
+        await m.edit(`${msg}`, { code: "x1" });
       } catch (err) {
         await message.channel.send(`\`100% packet loss\` \`\`\`xl\n${clean(err)}\n\`\`\``);
       }
@@ -844,9 +844,9 @@ client.on("message", async message => {
     try {
       const m = await message.channel.send("**Updating...**");
       UpdateFile("bot.js", "https://raw.githubusercontent.com/ceschmidt0001/LinxBot/master/bot.js");
-      UpdateFile("package-lock.json", "https://raw.githubusercontent.com/ceschmidt0001/LinxBot/master/package-lock.json");
-      UpdateFile("package.json", "https://raw.githubusercontent.com/ceschmidt0001/LinxBot/master/package.json");
-      await m.edit(`✅Update Successful`);
+      //UpdateFile("package-lock.json", "https://raw.githubusercontent.com/ceschmidt0001/LinxBot/master/package-lock.json");
+      //UpdateFile("package.json", "https://raw.githubusercontent.com/ceschmidt0001/LinxBot/master/package.json");
+      await m.edit(`✅ Update Successful`);
     } catch (err) {
       await message.channel.send("❌Update Failed");
     }
