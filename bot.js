@@ -65,7 +65,18 @@ function clean(text) {
 client.on("ready", () => {
   //client.user.setStatus('${config.presence}')
   client.user.setActivity(`${config.status}`, { type: `${config.mode}` /*,{url: "https://www.twitch.tv/minecraft"*/ });
-  console.log("loaded".green)
+  console.log("Bot Loaded Successfuly".green)
+});
+
+client.on("guildCreate", guild => {
+  // This event triggers when the bot joins a guild.
+  console.log(`New guild joined!`);
+  client.user.setActivity(`${config.status}`, { type: `${config.mode}` /*,{url: "https://www.twitch.tv/minecraft"*/ });
+});
+
+client.on("guildDelete", guild => {
+  // this event triggers when the bot is removed from a guild.
+  console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
 });
 
 function UpdateFile(FileName, Link) {
