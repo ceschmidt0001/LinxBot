@@ -802,17 +802,17 @@ client.on("message", async message => {
   }
 
   if (command === "cmd") {
+       message.channel.startTyping(3);
     if (message.author.id !== config.owner) {
       message.channel.send("❗ This is a **BOT OWNER** Command");
       return;
     }
     try {
       let strx = args.join(" ");
-      message.channel.startTyping(3);
       let msg = require("child_process").execSync(`${strx}`).toString();
       message.channel.send(`${msg}`, { code: "css" });
-      message.channel.stopTyping(true);
-    } catch (err) {
+    } message.channel.stopTyping(true);
+      catch (err) {
       await message.channel.send(`\`ERROR\` \`\`\`md\n${clean(err)}\n\`\`\``);
     }
   }
