@@ -668,39 +668,6 @@ client.on("message", async message => {
     }
   }
 
-  /*if (command === "cmd") {
-    let ownerID = `${config.owner}`
-    if (message.author.id !== ownerID) {
-      message.channel.send("❌ This is a **BOT OWNER** Command");
-      return;
-    }
-    let code = args.join(" ");
-
-    const util = require('util');
-    const exec = util.promisify(require('child_process').exec);
-
-    async function ls(b) {
-      const {
-        stdout,
-        stderr
-      } = await exec(`${b}`);
-      if (`${stdout}` == "") {
-        if (`${stderr}` !== "") {
-          output = stderr;
-        } else {
-          output = "output: " + stdout;
-        }
-      } else {
-        output = "output: " + stdout;
-      }
-      if (`${stdout}` == "" | `${stderr}` == "") {
-        output = "output: " + stdout + "\n error: " + stderr;
-      }
-      return await message.channel.send("note: (ignore blank errors/outputs)\n" + `\`\`\`cmd\n${output}\n\`\`\``);
-    }
-    ls(`${code}`);
-  }*/
-
   if (command === "yiff") {
     if (message.channel.nsfw === false) {
       message.channel.send("⚠ This channel isn't marked as NSFW.");
@@ -841,8 +808,10 @@ client.on("message", async message => {
     }
     try {
       let strx = args.join(" ");
+      await type(message.channel, true, 3);
       let msg = require("child_process").execSync(`${strx}`).toString();
       message.channel.send(`${msg}`, { code: "css" });
+      await type(message.channel, false, 0);
     } catch (err) {
       await message.channel.send(`\`ERROR\` \`\`\`md\n${clean(err)}\n\`\`\``);
     }
