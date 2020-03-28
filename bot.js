@@ -808,10 +808,10 @@ client.on("message", async message => {
     }
     try {
       let strx = args.join(" ");
-      type(message.channel, true, 3);
+      message.channel.startTyping(3);
       let msg = require("child_process").execSync(`${strx}`).toString();
       message.channel.send(`${msg}`, { code: "css" });
-      type(message.channel, false, 0);
+      message.channel.stopTyping(true);
     } catch (err) {
       await message.channel.send(`\`ERROR\` \`\`\`md\n${clean(err)}\n\`\`\``);
     }
