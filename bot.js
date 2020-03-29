@@ -70,7 +70,7 @@ client.on("ready", () => {
 
 client.on("guildCreate", guild => {
   // This event triggers when the bot joins a guild.
-  console.log(`New guild joined!`);
+  console.log(`New guild joined! (${guild.name})`);
   client.user.setActivity(`${config.status}`, { type: `${config.mode}` /*,{url: "https://www.twitch.tv/minecraft"*/ });
 });
 
@@ -130,16 +130,6 @@ async function sendRandomEmbed(channel, title, message, hex, image, thumbnail) {
   }
 
 }
-/*async function killme() {
-try{
- let strx = args.join(" ");
-  const m = await message.channel.send("ok, pinging...");
-  let msg = await require("child_process").execSync(`ping -c 4 ${strx}`).toString();
-  await m.edit(`${msg}`, { code: "css"}); 
-    }catch (e) {
-        console.error(e);
-   }
-  }*/
 
 client.on("message", async message => {
   if (message.content.indexOf(config.prefix) !== 0) return;
@@ -433,33 +423,6 @@ client.on("message", async message => {
     return await type(message.channel, false, 0);
   }
 
-  /*if (command === "pp") {
-    var sizes = [
-      "Sorry, you have a micro pp",
-      "8=D",
-      "8==D",
-      "8===D",
-      "8====D",
-      "8=====D",
-      "8======D",
-      "8=======D",
-      "8========D",
-      "8=========D",
-      "8==========D",
-      "8===========D",
-      "8============D",
-      "8=============D"
-    ]
-
-    if (!message.member.hasPermissions("ADMINISTRATOR"))
-    
-    await sendRandomEmbed(message.channel, "PP Size 💦", `8===================D`)
-      return;
-    
-    await sendRandomEmbed(message.channel, `PP Size 💦`, sizes[Math.floor(Math.random() * sizes.length)], 0xEE0000)
-
-  }*/
-
   if (command === "8ball") {
     var fortunes = [
       "It is certain.",
@@ -486,7 +449,7 @@ client.on("message", async message => {
 
     // const args = args.join(" ");
     if (!args[2]) {
-      return message.channel.send("Ask a **FULL** question!");
+      return message.channel.reply("Ask a **FULL** question!");
     }
 
     await sendRandomEmbed(message.channel, `🎱 Magic 8ball`, fortunes[Math.floor(Math.random() * fortunes.length)], 0x0000FF)
