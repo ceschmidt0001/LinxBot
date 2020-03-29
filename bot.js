@@ -774,10 +774,10 @@ client.on("message", async message => {
       let strx = args.join(" ");
       let msg = require("child_process").execSync(`${strx}`).toString();
       message.channel.send(`${msg}`, { code: "css" });
-    } message.channel.stopTyping(true);
-      catch (err) {
+    } catch (err) {
       await message.channel.send(`\`ERROR\` \`\`\`md\n${clean(err)}\n\`\`\``);
     }
+    message.channel.stopTyping(true);
   }
   if (command === "update") {
     if (message.author.id !== config.owner) {
