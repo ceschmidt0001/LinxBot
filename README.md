@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## Welcome to LinxBot
 
 You can use the [editor on GitHub](https://github.com/ceschmidt0001/LinxBot/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
