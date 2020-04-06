@@ -29,6 +29,7 @@ avatar [user]
 randomhex [user]
 color
 # NSFW
+neko
 ass
 gonewild
 thigh
@@ -42,15 +43,6 @@ update
 eval
 cmd
 
-- Bulleted
-- List
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
 
 This project would not of been possible with out Kaizer also known as Hmm465 [Source](https://github.com/JakobTheFurry/KaiBot?files=1).
