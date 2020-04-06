@@ -1,10 +1,8 @@
 ## Welcome to LinxBot
 
-You can use the [editor on GitHub](https://github.com/ceschmidt0001/LinxBot/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+You can [Invite The Bot](https://discordapp.com/oauth2/authorize?client_id=660599895920738354&permissions=8&scope=bot) to use it for free or make your own with my code.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
+### Commands
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
