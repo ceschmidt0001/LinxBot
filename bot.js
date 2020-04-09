@@ -143,12 +143,7 @@ client.on("message", async message => {
     const embed = new Discord.RichEmbed()
       .setTitle("Command List")
       .setColor(RandomNoHash)
-      .addField("Fun", ` \n ${p}8ball [question] \n ${p}banner [text] \n ${p}figlet [text] \n ${p}cowsay [text] \n ${p}weather [City] \n ${p}neko \n ${p}badjoke \n ${p}meme`, true)
-      .addField("Moderation", `\n ${p}ban [user] [reason (optional)] \n ${p}kick [user] [reason (optional)] \n ${p}giverole [user]  \n ${p}takerole [user]`, true)
-      .addField("Admin", `\n ${p}addrole [name] [color] \n ${p}setv [0-4] `, true)
-      .addField("NSFW", `\n ${p}ass \n ${p}gonewild \n ${p}thigh \n ${p}gif \n ${p}hentai \n ${p}hanal \n ${p}yiff ⚠e621 might give unwanted result.`, true)
-      .addField("Utility", `\n ${p}ping \n ${p}date [optional: -3] \n ${p}stats [Invite Link] \n ${p}userinfo [@user] \n ${p}avatar [@user] \n ${p}randomhex \n ${p}color [hex]`, true)
-      .addField("Bot Owner", `\n ${p}die [Hard Reset] \n ${p}update [Requires Reset] ${p}eval [code]  \n ${p}cmd [bash]`, true)
+      .addField("Click", "This: [link](https://ceschmidt0001.github.io/LinxBot/)")
       .setTimestamp()
       .setFooter(`Requested by ${member.username}`, member.displayAvatarURL)
     message.channel.send({ embed });
@@ -777,6 +772,7 @@ client.on("message", async message => {
       await message.channel.send(`\`ERROR\` \`\`\`md\n${clean(err)}\n\`\`\``);
     }
   }
+  
   if (command === "update") {
     if (message.author.id !== config.owner) {
       message.channel.send("❗ This is a **BOT OWNER** Command");
