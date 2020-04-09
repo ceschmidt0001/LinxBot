@@ -143,7 +143,7 @@ client.on("message", async message => {
     const embed = new Discord.RichEmbed()
       .setTitle("Command List")
       .setColor(RandomNoHash)
-      .addField("Click", "This: [link](https://ceschmidt0001.github.io/LinxBot/)")
+      .addField("Click", "[This](https://ceschmidt0001.github.io/LinxBot/)")
       .setTimestamp()
       .setFooter(`Requested by ${member.username}`, member.displayAvatarURL)
     message.channel.send({ embed });
