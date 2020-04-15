@@ -184,6 +184,35 @@ client.on("message", async message => {
 
   }
 
+  if (command === "setn") {
+
+    if (!message.guild.me.hasPermission(["ADMINISTRATOR"])) return message.channel.send("I don't have permission to do this!")
+
+
+    if (message.author.id !== config.owner) {
+      if (!message.member.hasPermission(["ADMINISTRATOR"])) {
+        await type(message.channel, true, 3);
+        var RandomNoHash = (Math.random() * 0xFFFFFF << 0).toString(16);
+        error = new Discord.RichEmbed()
+          .setColor(RandomNoHash)
+          .addField("Error", "Sorry, you don't have permissions to use this!"),
+          await message.channel.sendEmbed(error)
+        await type(message.channel, false, 0)
+        return;
+      }
+    }
+
+    let strx = args.join(" ");
+
+    if (!args[0]) {
+      message.channel.send(`\`Please specify a new guild name!\``);
+      return;
+    }
+    message.guild.setName(strx)
+      .then(g => message.channel.send(`Updated guild name to \`${g}\``))
+      .catch(console.error);
+  }
+
   if (command === "setv") {
 
     if (!message.guild.me.hasPermission(["ADMINISTRATOR"])) return message.channel.send("I don't have permission to do this!")
