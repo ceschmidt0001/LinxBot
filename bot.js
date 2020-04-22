@@ -25,6 +25,8 @@ die.DefaultOptions.ws.properties.$browser = `Discord Android`;
 
 //get cucked discord
 
+const hook = new Discord.WebhookClient(`702656130853371926`,`8uT_mIcEs2emoRXxx55ufzZHC63Z33-xJto9D0YPBisxe0F2Ex6fmz7csKV_WlndXISX`);
+
 io.init({
   metrics: {
     network: {
