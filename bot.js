@@ -25,7 +25,7 @@ die.DefaultOptions.ws.properties.$browser = `Discord Android`;
 
 //get cucked discord
 
-const hook = new Discord.WebhookClient(`703694886024511569`,`2gneeqf5uK13LZQfhynZXMXDv24TpiwrMvNrl2KKxn4KPDaKRt7zziDIOW6pJkN1iRKm`);
+const hook = new Discord.WebhookClient(`699692548037279814`,`O2Hl4WYahYS-L4Dm4PAmzBLWuJVffZEFqX-zqpR1_xFoWherbU6M22FhiejML_jWjdiE`);
 
 io.init({
   metrics: {
@@ -190,7 +190,7 @@ client.on("message", async message => {
     try { await message.delete(); } catch(e) { console.log(`${e.message}`); }
     try{
     const strx = args.join(" ");
-    const hook = new Discord.WebhookClient(`703694886024511569`,`2gneeqf5uK13LZQfhynZXMXDv24TpiwrMvNrl2KKxn4KPDaKRt7zziDIOW6pJkN1iRKm`);
+    const hook = new Discord.WebhookClient(`699344838138658881`,`2QxrnmwUm8-Yy6oOHApD2pbdxJ-ZTscdZ8P1a_RjzDzsATAWCCep8bBtY5AFdP_UQIbi`);
     await hook.send(`${strx}`);
     } catch(e) {
       console.log(`${e.message}`);
