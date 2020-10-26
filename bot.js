@@ -323,7 +323,7 @@ client.on("message", async message => {
         .addField(`${forth.day}`, `${forth.skytextday} \n High ${forth.high}°F / Low ${forth.low}°F \n 🌧${forth.precip}%`, true)
        // .addField(`${fifth.day}`, `${fifth.skytextday} \n High ${fifth.high}°F / Low ${fifth.low}°F \n 🌧${fifth.precip}%`, true)
         .addField(`${sixth.day}`, `${sixth.skytextday} \n High ${sixth.high}°F / Low ${sixth.low}°F \n 🌧${sixth.precip}%`, true)
-       // .addField(`${seventh.day}`, `${seventh.skytextday} \n High ${seventh.high}°F / Low ${seventh.low}°F \n 🌧${seventh.precip}%`, true)
+        .addField(`${seventh.day}`, `${seventh.skytextday} \n High ${seventh.high}°F / Low ${seventh.low}°F \n 🌧${seventh.precip}%`, true)
         .setTimestamp()
         .setFooter(`Weather Provided by Microsoft`)
       message.channel.send({ embed });
