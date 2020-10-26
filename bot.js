@@ -314,14 +314,14 @@ client.on("message", async message => {
 
 
       const embed = new Discord.RichEmbed()
-        .setDescription(`${today.day} \n ${current.skytext} \n ${today.high}H / ${today.low}L`) // This is the text of what the sky looks like.
+        .setDescription(`**${today.day}** \n ${current.skytext} \n ${today.high}H / ${today.low}L`) // This is the text of what the sky looks like.
         .setAuthor(`Forecast for ${current.observationpoint}`) // This shows the current location of the weather.
         .setThumbnail(current.imageUrl) // This sets the thumbnail of the embed
         .setColor(0x107AFE)
         .addField(`${tommorow.day}`, `${tommorow.skytextday} \n High ${tommorow.high}°F / Low ${tommorow.low}°F \n 🌧${tommorow.precip}%`, true) // This is the first field, it shows the timezone, and the true means `inline`.
         .addField(`${third.day}`, `${third.skytextday} \n High ${third.high}°F / Low ${third.low}°F \n 🌧${third.precip}%`, true)// This is the field that shows the degree type, and is inline
         .addField(`${forth.day}`, `${forth.skytextday} \n High ${forth.high}°F / Low ${forth.low}°F \n 🌧${forth.precip}%`, true)
-       // .addField(`${fifth.day}`, `${fifth.skytextday} \n High ${fifth.high}°F / Low ${fifth.low}°F \n 🌧${fifth.precip}%`, true)
+        .addField(`${fifth.day}`, `${fifth.skytextday} \n High ${fifth.high}°F / Low ${fifth.low}°F \n 🌧${fifth.precip}%`, true)
         .addField(`${sixth.day}`, `${sixth.skytextday} \n High ${sixth.high}°F / Low ${sixth.low}°F \n 🌧${sixth.precip}%`, true)
         .addField(`${seventh.day}`, `${seventh.skytextday} \n High ${seventh.high}°F / Low ${seventh.low}°F \n 🌧${seventh.precip}%`, true)
         .setTimestamp()
