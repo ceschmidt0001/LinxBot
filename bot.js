@@ -171,7 +171,7 @@ client.on("message", async message => {
     var vchannels = client.channels.filter(c => c.type === 'voice').size
     const embed = new Discord.RichEmbed()
       .setTitle("📊 Bot Stats - Invite")
-      .setURL(`https://discordapp.com/oauth2/authorize?client_id=660599895920738354&permissions=8&scope=bot`)
+      .setURL(`https://discord.com/oauth2/authorize?client_id=710215820307071037&permissions=8&scope=bot`)
       .setColor(RandomNoHash)
       .addField("Guild Count", `${client.guilds.size}`, true)
       .addField("User Count", `${client.users.size}`, true)
@@ -510,21 +510,6 @@ client.on("message", async message => {
     message.channel.send(embed);
   }
 
-  if (command === "gif") {
-    if (message.channel.nsfw === false) {
-      message.channel.send(" ⚠ This channel isn't marked as NSFW.");
-      return;
-    }
-    let porn = await memer.porn()
-
-    const embed = new Discord.RichEmbed()
-      .setTitle('Porn Gif')
-      .setImage(porn)
-      .setTimestamp()
-      .setFooter(client.user.username, client.user.displayAvatarURL)
-    message.channel.send(embed);
-  }
-
   if (command === "hanal") {
     if (message.channel.nsfw === false) {
       message.channel.send("⚠ This channel isn't marked as NSFW.");
@@ -535,49 +520,6 @@ client.on("message", async message => {
     const embed = new Discord.RichEmbed()
       .setTitle('Hentai Anal')
       .setImage(hanal)
-      .setTimestamp()
-      .setFooter(client.user.username, client.user.displayAvatarURL)
-    message.channel.send(embed);
-  }
-
-  if (command === "gonewild") {
-    if (message.channel.nsfw === false) {
-      message.channel.send("⚠ This channel isn't marked as NSFW.");
-      return;
-    }
-    let gonewild = await memer.gonewild()
-
-    const embed = new Discord.RichEmbed()
-      .setTitle('Gone-Wild')
-      .setImage(gonewild)
-      .setTimestamp()
-      .setFooter(client.user.username, client.user.displayAvatarURL)
-    message.channel.send(embed);
-  }
-  if (command === "thigh") {
-    if (message.channel.nsfw === false) {
-      message.channel.send("⚠ This channel isn't marked as NSFW.");
-      return;
-    }
-    let thigh = await memer.thigh()
-
-    const embed = new Discord.RichEmbed()
-      .setTitle('Random Thigh')
-      .setImage(thigh)
-      .setTimestamp()
-      .setFooter(client.user.username, client.user.displayAvatarURL)
-    message.channel.send(embed);
-  }
-  if (command === "ass") {
-    if (message.channel.nsfw === false) {
-      message.channel.send("⚠ This channel isn't marked as NSFW.");
-      return;
-    }
-    let ass = await memer.ass()
-
-    const embed = new Discord.RichEmbed()
-      .setTitle('Random Ass')
-      .setImage(ass)
       .setTimestamp()
       .setFooter(client.user.username, client.user.displayAvatarURL)
     message.channel.send(embed);
@@ -627,18 +569,6 @@ client.on("message", async message => {
       })
   };
 
-  if (command === "meme") {
-    let meme = await memer.meme()
-
-    const embed = new Discord.RichEmbed()
-      .setTitle('Random Meme')
-      .setImage(meme)
-      .setTimestamp()
-      .setFooter(client.user.username, client.user.displayAvatarURL)
-    //.setColor(colors.red)
-
-    message.channel.send(embed);
-  }
 
   if (command === "randomhex") {
     var RandomNoHash = (Math.random() * 0xFFFFFF << 0).toString(16);
