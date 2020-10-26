@@ -291,6 +291,45 @@ client.on("message", async message => {
     });
   }
 
+  if (command === "forecast") {
+
+    weather.find({ search: args.join(" "), degreeType: 'F' }, function (err, result) {
+      if (err) message.channel.send(err);
+
+      if (result.length === 0) {
+        message.channel.send('**Please enter a valid location.**')
+        return;
+      }
+
+      // Variables
+      var current = result[0].current; // This is a variable for the current part of the JSON output
+      var location = result[0].location; // This is a variable for the location part of the JSON output
+      var today = result[0].forecast[1];
+      var tommorow = result[0].forecast[2];
+      var third = result[0].forecast[3];
+      var forth = result[0].forecast[4];
+      var fifth = result[0].forecast[5];
+      var sixth = result[0].forecast[6];
+      var seventh = result[0].forecast[7];
+
+
+      const embed = new Discord.RichEmbed()
+        .setDescription(`${today.day} \n ${current.skytext} \n ${today.high}H / ${today.low}L`) // This is the text of what the sky looks like.
+        .setAuthor(`Forecast for ${current.observationpoint}`) // This shows the current location of the weather.
+        .setThumbnail(current.imageUrl) // This sets the thumbnail of the embed
+        .setColor(0x107AFE)
+        .addField(`${tommorow.day}`, `${tommorow.skytextday} \n High ${tommorow.high}°F / Low ${tommorow.low}°F \n 🌧${tommorow.precip}%`, true) // This is the first field, it shows the timezone, and the true means `inline`.
+        .addField(`${third.day}`, `${third.skytextday} \n High ${third.high}°F / Low ${third.low}°F \n 🌧${third.precip}%`, true)// This is the field that shows the degree type, and is inline
+        .addField(`${forth.day}`, `${forth.skytextday} \n High ${forth.high}°F / Low ${forth.low}°F \n 🌧${forth.precip}%`, true)
+        .addField(`${fifth.day}`, `${fifth.skytextday} \n High ${fifth.high}°F / Low ${fifth.low}°F \n 🌧${fifth.precip}%`, true)
+        .addField(`${sixth.day}`, `${sixth.skytextday} \n High ${sixth.high}°F / Low ${sixth.low}°F \n 🌧${sixth.precip}%`, true)
+        .addField(`${seventh.day}`, `${seventh.skytextday} \n High ${seventh.high}°F / Low ${seventh.low}°F \n 🌧${seventh.precip}%`, true)
+        .setTimestamp()
+        .setFooter(`Weather Provided by Microsoft`)
+      message.channel.send({ embed });
+    });
+  }
+
   if (command === "userinfo") {
     let member = message.mentions.members.first() || message.guild.members.get(args[0]);
     if (!member) {
