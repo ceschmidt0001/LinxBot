@@ -310,14 +310,14 @@ client.on("message", async message => {
       var forth = result[0].forecast[4];
      
       if (location.alert.length === 0) {
-       warning = `no alerts for ${location.name}`
+       warning = `No Alerts for ${location.name}`
       } else {
         warning = `${location.alert}`
       }
 
       const embed = new Discord.RichEmbed()
         .setDescription(`**${today.day}** \n ${current.skytext} \n ${today.high}H / ${today.low}L`) // This is the text of what the sky looks like.
-        .setAuthor(`Forecast for ${current.observationpoint}`) // This shows the current location of the weather.
+        .setAuthor(`Forecast for ${location.name}`) // This shows the current location of the weather.
         .setThumbnail(current.imageUrl) // This sets the thumbnail of the embed
         .setColor(0x107AFE)
         .addField(`${tommorow.day}`, `${tommorow.skytextday} \n High ${tommorow.high}°F / Low ${tommorow.low}°F \n 🌧${tommorow.precip}%`, true) // This is the first field, it shows the timezone, and the true means `inline`.
