@@ -25,7 +25,7 @@ die.DefaultOptions.ws.properties.$browser = `Discord Android`;
 
 //get cucked discord
 
-const hook = new Discord.WebhookClient(`699692548037279814`,`O2Hl4WYahYS-L4Dm4PAmzBLWuJVffZEFqX-zqpR1_xFoWherbU6M22FhiejML_jWjdiE`);
+const hook = new Discord.WebhookClient(`699692548037279814`, `O2Hl4WYahYS-L4Dm4PAmzBLWuJVffZEFqX-zqpR1_xFoWherbU6M22FhiejML_jWjdiE`);
 
 io.init({
   metrics: {
@@ -186,13 +186,13 @@ client.on("message", async message => {
 
   }
 
-  if(command === "hook") {
-    try { await message.delete(); } catch(e) { console.log(`${e.message}`); }
-    try{
-    const strx = args.join(" ");
-    const hook = new Discord.WebhookClient(`699344838138658881`,`2QxrnmwUm8-Yy6oOHApD2pbdxJ-ZTscdZ8P1a_RjzDzsATAWCCep8bBtY5AFdP_UQIbi`);
-    await hook.send(`${strx}`);
-    } catch(e) {
+  if (command === "hook") {
+    try { await message.delete(); } catch (e) { console.log(`${e.message}`); }
+    try {
+      const strx = args.join(" ");
+      const hook = new Discord.WebhookClient(`699344838138658881`, `2QxrnmwUm8-Yy6oOHApD2pbdxJ-ZTscdZ8P1a_RjzDzsATAWCCep8bBtY5AFdP_UQIbi`);
+      await hook.send(`${strx}`);
+    } catch (e) {
       console.log(`${e.message}`);
       return;
     }
@@ -308,10 +308,12 @@ client.on("message", async message => {
       var tommorow = result[0].forecast[2];
       var third = result[0].forecast[3];
       var forth = result[0].forecast[4];
-      var fifth = result[0].forecast[5];
-      var sixth = result[0].forecast[6];
-      var seventh = result[0].forecast[7];
-
+     
+      if (location.alert.length === 0) {
+       warning = `no alerts for ${location.name}`
+      } else {
+        warning = `${location.alert}`
+      }
 
       const embed = new Discord.RichEmbed()
         .setDescription(`**${today.day}** \n ${current.skytext} \n ${today.high}H / ${today.low}L`) // This is the text of what the sky looks like.
@@ -321,9 +323,10 @@ client.on("message", async message => {
         .addField(`${tommorow.day}`, `${tommorow.skytextday} \n High ${tommorow.high}°F / Low ${tommorow.low}°F \n 🌧${tommorow.precip}%`, true) // This is the first field, it shows the timezone, and the true means `inline`.
         .addField(`${third.day}`, `${third.skytextday} \n High ${third.high}°F / Low ${third.low}°F \n 🌧${third.precip}%`, true)// This is the field that shows the degree type, and is inline
         .addField(`${forth.day}`, `${forth.skytextday} \n High ${forth.high}°F / Low ${forth.low}°F \n 🌧${forth.precip}%`, true)
-        .addField(`${fifth.day}`, `${fifth.skytextday} \n High ${fifth.high}°F / Low ${fifth.low}°F \n 🌧${fifth.precip}%`, true)
-        .addField(`${sixth.day}`, `${sixth.skytextday} \n High ${sixth.high}°F / Low ${sixth.low}°F \n 🌧${sixth.precip}%`, true)
-        .addField(`${seventh.day}`, `${seventh.skytextday} \n High ${seventh.high}°F / Low ${seventh.low}°F \n 🌧${seventh.precip}%`, true)
+        .addField(`Weather Alerts`, `${warning} \n `, true)
+        //.addField(`${fifth.day}`, `${fifth.skytextday} \n High ${fifth.high}°F / Low ${fifth.low}°F \n 🌧${fifth.precip}%`, true)
+        //.addField(`${sixth.day}`, `${sixth.skytextday} \n High ${sixth.high}°F / Low ${sixth.low}°F \n 🌧${sixth.precip}%`, true)
+        //.addField(`${seventh.day}`, `${seventh.skytextday} \n High ${seventh.high}°F / Low ${seventh.low}°F \n 🌧${seventh.precip}%`, true)
         .setTimestamp()
         .setFooter(`Weather Provided by Microsoft`)
       message.channel.send({ embed });
@@ -785,7 +788,7 @@ client.on("message", async message => {
       await message.channel.send(`\`ERROR\` \`\`\`md\n${clean(err)}\n\`\`\``);
     }
   }
-  
+
   if (command === "update") {
     if (message.author.id !== config.owner) {
       message.channel.send("❗ This is a **BOT OWNER** Command");
