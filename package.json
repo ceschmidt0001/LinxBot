@@ -7,7 +7,7 @@
     "@pm2/io": "^4.3.3",
     "async": "^2.6.3",
     "asyncio": "0.0.2",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "colors": "^1.4.0",
     "discord": "",
     "discord-meme-generator": "^1.0.6",
