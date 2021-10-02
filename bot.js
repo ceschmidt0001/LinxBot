@@ -18,14 +18,10 @@ const weather = require('weather-js');
 const memer = require("discordmeme.js");
 const math = require('mathjs');
 
-let yiff = require('yiff');
-
 const die = require("discord.js/src/util/Constants.js");
 die.DefaultOptions.ws.properties.$browser = `Discord Android`;
 
 //get cucked discord
-
-const hook = new Discord.WebhookClient(`699692548037279814`, `O2Hl4WYahYS-L4Dm4PAmzBLWuJVffZEFqX-zqpR1_xFoWherbU6M22FhiejML_jWjdiE`);
 
 io.init({
   metrics: {
@@ -60,9 +56,6 @@ function clean(text) {
   else
     return text;
 }
-
-
-
 
 client.on("ready", () => {
   //client.user.setStatus('${config.presence}')
@@ -536,37 +529,6 @@ client.on("message", async message => {
     await sendRandomEmbed(message.channel, `🎱 Magic 8ball`, fortunes[Math.floor(Math.random() * fortunes.length)], 0x0000FF)
   }
 
-
-  if (command === "hentai") {
-    if (message.channel.nsfw === false) {
-      message.channel.send("⚠ This channel isn't marked as NSFW.");
-      return;
-    }
-    let hentai = await memer.hentai()
-
-    const embed = new Discord.RichEmbed()
-      .setTitle('Random Hentai')
-      .setImage(hentai)
-      .setTimestamp()
-      .setFooter(client.user.username, client.user.displayAvatarURL)
-    message.channel.send(embed);
-  }
-
-  if (command === "hanal") {
-    if (message.channel.nsfw === false) {
-      message.channel.send("⚠ This channel isn't marked as NSFW.");
-      return;
-    }
-    let hanal = await memer.hanal()
-
-    const embed = new Discord.RichEmbed()
-      .setTitle('Hentai Anal')
-      .setImage(hanal)
-      .setTimestamp()
-      .setFooter(client.user.username, client.user.displayAvatarURL)
-    message.channel.send(embed);
-  }
-
   if (command === "neko") {
     let neko = await memer.neko()
 
@@ -642,32 +604,6 @@ client.on("message", async message => {
     }
   }
 
-  if (command === "yiff") {
-    if (message.channel.nsfw === false) {
-      message.channel.send("⚠ This channel isn't marked as NSFW.");
-      return;
-    }
-    let msg = await message.channel.send("Searching...");
-    const strx = args.join(" ");
-    try {
-      await yiff.e621.CubFilter(`${strx}`).then(async (r) => {
-        var RandomNoHash = (Math.random() * 0xFFFFFF << 0).toString(16);
-        const embed = new Discord.RichEmbed()
-          .setColor(RandomNoHash)
-          .setURL(r.source)
-          .setTitle("e621 - No Image? [link]")
-          .setImage(r.image)
-          .setFooter(`Artist: ${r.artist.join(" ")} | Score: ${r.score} | Fav. Count: ${r.fav_count} | ID: ${r.postID}`);
-        return await message.channel.send(embed)
-
-      });
-    } catch (e) {
-      message.channel.send("⚠ tag not found (try something else)");
-      return;
-    }
-    msg.delete();
-  };
-
   if (command === "die") {
     if (message.author.id !== config.owner) {
       message.channel.send("❌ This is a **BOT OWNER** Command");
@@ -679,32 +615,6 @@ client.on("message", async message => {
       sleep(100);
       process.exit(0);
     });
-  }
-
-  if (command === "yiffspamdm") {
-    if (message.author.id !== config.owner) {
-      message.channel.send("❗ This is a **BOT OWNER** Command");
-      return;
-    }
-    if (!args[0]) {
-      await type(message.channel, true, 3);
-      await message.reply("who do i spam dumbass?");
-      return await type(message.channel, false, 0);
-    }
-    let member = message.mentions.members.first();
-    const strx = args.slice(1).join(' ');
-    message.channel.send(`spamming yiff to <@${member.id}>`);
-    setInterval(async () => {
-      await yiff.e621.CubFilter(`${strx}`).then(async (r) => {
-        var RandomNoHash = (Math.random() * 0xFFFFFF << 0).toString(16);
-        const embed = new Discord.RichEmbed()
-          .setColor(RandomNoHash)
-          .setAuthor("e621")
-          .setImage(r.image)
-          .setFooter(`Artist: ${r.artist.join(" ")} | Score: ${r.score} | Fav. Count: ${r.fav_count} | ID: ${r.postID}`);
-        return await member.send(embed);
-      });
-    }, 1000)
   }
 
   if (command === "spamdm") {
