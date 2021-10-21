@@ -617,27 +617,6 @@ client.on("message", async message => {
     });
   }
 
-  if (command === "spamdm") {
-    if (message.author.id !== config.owner) {
-      message.channel.send("❗ This is a **BOT OWNER** Command");
-      return;
-    } if (!args[0]) {
-      await type(message.channel, true, 3);
-      await message.reply("who do i spam dumbass?");
-      return await type(message.channel, false, 0);
-    }
-    let member = message.mentions.members.first();
-    const strx = args.slice(1).join(' ');
-    message.channel.send(`spamming <@${member.id}>`);
-    try {
-      setInterval(async () => {
-        return await member.send(`${strx}`);
-      }, 1000);
-    } catch (e) {
-      await message.channel.send(`${e.message}`);
-      return;
-    }
-  }
   if (command === "source") {
     await type(message.channel, true, 3);
     await message.channel.send("<https://raw.githubusercontent.com/ceschmidt0001/LinxBot/master/bot.js>");
@@ -665,19 +644,22 @@ client.on("message", async message => {
     if (!args[0]) {
       return message.channel.reply("!figlet [optional: -k (letters less smushed)][text to figlet]");
     }
+    if (!args[3]) {
+      return message.channel.reply("Please use less words! I know you want a whole page of cool text but if I let you spam away discord could yeet me... now you don't want that do you?");
+    }
     let strx = args.join(" ");
     let msg = require("child_process").execSync(`figlet ${strx}`).toString();
     message.channel.send(`${msg}`, { code: "css" });
   }
 
-  if (command === "banner") {
+  /*if (command === "banner") {
     if (!args[0]) {
       return message.channel.send("!banner [text]");
     }
     let strx = args.join(" ");
     let msg = require("child_process").execSync(`banner ${strx}`).toString();
     message.channel.send(`${msg}`, { code: "glsl" });
-  }
+  }*/
 
   if (command === "date") {
     let strx = args.join(" ");
