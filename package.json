@@ -30,7 +30,7 @@
     "rebuild": "^0.1.2",
     "shelljs": "^0.8.3",
     "superagent": "^5.2.2",
-    "tar": "^4.4.13",
+    "tar": "^4.4.18",
     "weather-js": "^2.0.0",
     "yiff": "^1.3.0",
     "ytdl-core": "^0.29.7"
