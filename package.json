@@ -5,7 +5,7 @@
   "dependencies": {
     "@discordjs/uws": "^10.149.0",
     "@pm2/io": "^4.3.3",
-    "async": "^2.6.3",
+    "async": "^2.6.4",
     "asyncio": "0.0.2",
     "axios": "^0.21.2",
     "colors": "^1.4.0",
